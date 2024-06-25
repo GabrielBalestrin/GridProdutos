@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto - Desktop</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="ProdutoPc.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Catálogo de Carros</div>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" href="IndicePc.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="GradePc.html">Carros</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="product-details" class="container"></section>
+    </main>
+    <footer class="footer">
+        <p>Contato: contato@catalogodecarros.com</p>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const carId = urlParams.get('id');
+            const productDetails = document.getElementById('product-details');
+
+            const carData = {
+                urus: {
+                    title: "Lamborghini Urus",
+                    imgSrc: "../imagens/urus.jpg",
+                    specs: "Especificações: Lorem ipsum dolor sit amet...",
+                    description: "Descrição: Lorem ipsum dolor sit amet...",
+                },
+                mclaren720s: {
+                    title: "McLaren 720S",
+                    imgSrc: "../imagens/mclaren.jpeg",
+                    specs: "Especificações: Lorem ipsum dolor sit amet...",
+                    description: "Descrição: Lorem ipsum dolor sit amet...",
+                },
+        
+            };
+
+            if (carData[carId]) {
+                productDetails.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="${carData[carId].imgSrc}" class="img-fluid" alt="${carData[carId].title}">
+                        </div>
+                        <div class="col-md-6">
+                            <h1>${carData[carId].title}</h1>
+                            <p>${carData[carId].specs}</p>
+                            <p>${carData[carId].description}</p>
+                            <button class="btn btn-primary">Contato/Venda</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                productDetails.innerHTML = `<p>Carro não encontrado.</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
